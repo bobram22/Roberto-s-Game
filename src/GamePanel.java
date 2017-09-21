@@ -21,6 +21,7 @@ void StartGame(){
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		repaint();
+		gm.update();
 	}
 public void paintComponent(Graphics g){
 	gm.draw(g);

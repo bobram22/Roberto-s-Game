@@ -13,10 +13,11 @@ TotallyNotAstroid(){
 }
 void setup(){
 	f.add(gp);
-	f.setSize(500, 800);
+	f.setSize(800, 800);
 	f.setVisible(true);
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	gp.StartGame();
+	f.addKeyListener(gp);
 }
 
 }

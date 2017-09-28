@@ -1,17 +1,18 @@
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class GameObject {
-	int x;
-	int y;
+	int x=10;
+	int y=10;
 	int width;
 	int height;
 
 void update(){
+	x++;
+	y++;
 	
 }
 void draw(Graphics g){
-	g.drawLine(10, 10, 80, 70);
-	g.drawLine(10, 10, 10, 80);
-	g.drawLine(10,80 ,80, 70);
+	g.fillRect(x, y, 20, 20);
 }
 }

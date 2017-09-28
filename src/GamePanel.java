@@ -1,3 +1,6 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,10 +12,14 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	Timer t;
-	GameObject gm;
+	final int MENU_STATE = 0;
+	final int GAME_STATE = 1;
+	final int END_STATE = 2;
+	int currentState = 0;
+	Font titleFont;
+	Rocketship ship;
 GamePanel(){
 	t = new Timer(1000/6, this);
-	gm= new GameObject();
 }
 void StartGame(){
 	t.start();
@@ -21,10 +28,54 @@ void StartGame(){
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		repaint();
-		gm.update();
+		if(currentState == MENU_STATE){
+			updatems();
+		}else if(currentState == GAME_STATE){
+			updategs();
+		}else if(currentState == END_STATE){
+			updatees();
+		}
+
+	}
+	void updatems(){
+		
+	}
+	void updategs(){
+				
+	}
+	
+	void updatees(){
+		
+	}
+	void drawms(Graphics g){
+		g.setColor(Color.BLUE);
+		g.fillRect(0, 0,  1000, 1000);
+		g.setColor(Color.yellow);
+		g.setFont(titleFont);
+		g.drawString("Totally NOT", 190, 100);
+		g.drawString("Astriods", 190, 135);
+	}
+	void drawgs(Graphics g){
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, 10000,100000);    
+
+	}
+	void drawes(Graphics g){
+	g.setColor(Color.RED);
+	g.fillRect(0, 0, 1000, 1000);
+	g.setColor(Color.BLACK);
+	g.setFont(titleFont);
+	g.drawString("Game", 190, 100);
+	g.drawString("Over :'(", 190, 135);
 	}
 public void paintComponent(Graphics g){
-	gm.draw(g);
+	if(currentState == MENU_STATE){
+		drawms(g);
+	}else if(currentState == GAME_STATE){
+		drawgs(g);
+	}else if(currentState == END_STATE){
+		drawes(g);
+	}
 
 	}
 @Override
@@ -36,6 +87,13 @@ public void keyTyped(KeyEvent e) {
 public void keyPressed(KeyEvent e) {
 	// TODO Auto-generated method stub
 	System.out.println("bob");
+	if(e.getKeyCode()==KeyEvent.VK_ENTER){
+		currentState++;
+	}
+	if(currentState > END_STATE){
+		currentState = MENU_STATE;
+	}
+
 }
 @Override
 public void keyReleased(KeyEvent e) {

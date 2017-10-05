@@ -18,8 +18,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	int currentState = 0;
 	Font titleFont;
 	Rocketship ship;
+	ObjectManager om;
 GamePanel(){
-	t = new Timer(1000/6, this);
+	t = new Timer(1000/60, this);
+	ship = new Rocketship(250,200,50,50);
+	om = new ObjectManager();
+	om.addObject(ship);
 }
 void StartGame(){
 	t.start();
@@ -41,7 +45,7 @@ void StartGame(){
 		
 	}
 	void updategs(){
-				
+		om.update();
 	}
 	
 	void updatees(){
@@ -58,6 +62,7 @@ void StartGame(){
 	void drawgs(Graphics g){
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 10000,100000);    
+		om.draw(g);
 
 	}
 	void drawes(Graphics g){
@@ -93,12 +98,36 @@ public void keyPressed(KeyEvent e) {
 	if(currentState > END_STATE){
 		currentState = MENU_STATE;
 	}
+	if(e.getKeyCode()==KeyEvent.VK_LEFT){
+		ship.speed=5;
+	}
+	else if (e.getKeyCode()== KeyEvent.VK_RIGHT){
+		ship.speed=-5;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_UP){
+		ship.ospeed=5;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_DOWN){
+		ship.ospeed=-5;
+	}
 
 }
 @Override
 public void keyReleased(KeyEvent e) {
 	// TODO Auto-generated method stub
 	System.out.println("chicken");
+	if(e.getKeyCode()==KeyEvent.VK_LEFT){
+		ship.speed=0;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+		ship.speed=0;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_UP){
+		ship.ospeed=0;
+	}
+	else if(e.getKeyCode()==KeyEvent.VK_DOWN){
+		ship.ospeed=0;
+	}
 }
 
 }

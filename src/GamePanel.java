@@ -99,16 +99,19 @@ public void keyPressed(KeyEvent e) {
 		currentState = MENU_STATE;
 	}
 	if(e.getKeyCode()==KeyEvent.VK_LEFT){
-		ship.speed=5;
+		ship.aspeed=5;
 	}
 	else if (e.getKeyCode()== KeyEvent.VK_RIGHT){
-		ship.speed=-5;
+		ship.aspeed=-5;
 	}
 	else if(e.getKeyCode()==KeyEvent.VK_UP){
 		ship.ospeed=5;
 	}
 	else if(e.getKeyCode()==KeyEvent.VK_DOWN){
 		ship.ospeed=-5;
+	}
+else if (e.getKeyCode()==KeyEvent.VK_SPACE){
+	om.addObject(new Projectiles(ship.x+ship.width/2, ship.y, 10, 10));
 	}
 
 }
@@ -117,10 +120,10 @@ public void keyReleased(KeyEvent e) {
 	// TODO Auto-generated method stub
 	System.out.println("chicken");
 	if(e.getKeyCode()==KeyEvent.VK_LEFT){
-		ship.speed=0;
+		ship.aspeed=0;
 	}
 	else if(e.getKeyCode()==KeyEvent.VK_RIGHT){
-		ship.speed=0;
+		ship.aspeed=0;
 	}
 	else if(e.getKeyCode()==KeyEvent.VK_UP){
 		ship.ospeed=0;
@@ -128,6 +131,7 @@ public void keyReleased(KeyEvent e) {
 	else if(e.getKeyCode()==KeyEvent.VK_DOWN){
 		ship.ospeed=0;
 	}
+	
 }
 
 }

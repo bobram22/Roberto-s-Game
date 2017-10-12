@@ -45,7 +45,7 @@ public class ObjectManager {
 
 	public void manageEnemies(){
 		if(System.currentTimeMillis() - enemyTimer >= enemySpawnTime){
-			addObject(new Aliens(new Random().nextInt(TotallyNotAstroid.width), 0, 50, 50));
+			//addObject(new Aliens(new Random().nextInt(TotallyNotAstroid.width), 0, 50, 50));
 			enemyTimer = System.currentTimeMillis();
 		}
 	}
@@ -58,7 +58,7 @@ public class ObjectManager {
 				GameObject o2 = objects.get(j);
 				
 				if(o1.collisionBox.intersects(o2.collisionBox)){
-					if((o1 instanceof Aliens && o2 instanceof Projectiles) ||
+					/*if((o1 instanceof Aliens && o2 instanceof Projectiles) ||
 					   (o2 instanceof Aliens && o1 instanceof Projectiles)){
 						score++;
 						System.out.println(score);
@@ -70,7 +70,7 @@ public class ObjectManager {
 					o1.isAlive = false;
 						o2.isAlive = false;
 					}
-	
+	*/
 				}
 			}
 		}

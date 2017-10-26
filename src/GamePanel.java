@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -18,12 +21,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	int currentState = 0;
 	Font titleFont;
 	Rocketship ship;
+	public static BufferedImage playerImage;
 	ObjectManager om;
 GamePanel(){
 	t = new Timer(1000/60, this);
 	ship = new Rocketship(250,200,50,50);
 	om = new ObjectManager();
 	om.addObject(ship);
+	try{
+		playerImage = ImageIO.read(this.getClass().getResourceAsStream("ship.png"));
+	}
+	catch(IOException e){
+		e.printStackTrace();
+	}
 }
 void StartGame(){
 	t.start();
@@ -105,13 +115,13 @@ public void keyPressed(KeyEvent e) {
 		ship.aspeed=-5;
 	}
 	else if(e.getKeyCode()==KeyEvent.VK_UP){
-		ship.ospeed=5;
+		ship.speed=5;
 	}
 	else if(e.getKeyCode()==KeyEvent.VK_DOWN){
-		ship.ospeed=-5;
+		ship.speed=-5;
 	}
 else if (e.getKeyCode()==KeyEvent.VK_SPACE){
-	om.addObject(new Projectiles(ship.x+ship.width/2, ship.y, 10, 10));
+	om.addObject(new Projectiles(ship.x+ship.width/2, ship.y, 10, 10, ship.angle));
 	}
 
 }

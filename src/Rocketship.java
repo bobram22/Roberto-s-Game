@@ -14,8 +14,8 @@ public class Rocketship extends GameObject {
 		int speed = 5;
 	}
 	void update(){
-		x-=speed;
-		y-=ospeed;
+		x-=speed*Math.cos(Math.toRadians(angle));
+		y-=speed*Math.sin(Math.toRadians(angle));
 		angle-=aspeed;
 	}
 	
@@ -24,8 +24,10 @@ public class Rocketship extends GameObject {
 		g2d.translate(x, y);
 		g2d.rotate(Math.toRadians(angle));
 		
-		g2d.setColor(Color.BLUE);
+	/*	g2d.setColor(Color.BLUE);
 		g2d.fillRect(-width/2, -height/2, width, height);
+		*/
+		g2d.drawImage(GamePanel.playerImage, x, y, width, height);
 		g2d.setTransform(new AffineTransform());
 		
 	}

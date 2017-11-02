@@ -6,6 +6,8 @@ import java.awt.geom.AffineTransform;
 public class Rocketship extends GameObject {
 	
 	int speed;
+	float xspeed;
+	float yspeed;
 	int ospeed;
 	int angle=0;
 	int aspeed;
@@ -14,10 +16,27 @@ public class Rocketship extends GameObject {
 		int speed = 5;
 	}
 	void update(){
-		x-=speed*Math.cos(Math.toRadians(angle));
-		y-=speed*Math.sin(Math.toRadians(angle));
+		xspeed+=speed*Math.cos(Math.toRadians(angle));
+		yspeed+=speed*Math.sin(Math.toRadians(angle));
+		xspeed *= .95;
+		yspeed *= .95;
+		x+=xspeed;
+		y+=yspeed;
 		angle-=aspeed;
-	}
+		if(x<0){
+			System.out.println("turtle");
+			x=800;
+		}
+		else if(x>800){
+			x=0;
+		}
+		if(y<0){
+			y=800;
+		}
+		else if(y>800){
+			y=0;
+		}
+		}
 	
 	void draw(Graphics g){
 		Graphics2D g2d = (Graphics2D)g;
@@ -27,7 +46,7 @@ public class Rocketship extends GameObject {
 	/*	g2d.setColor(Color.BLUE);
 		g2d.fillRect(-width/2, -height/2, width, height);
 		*/
-		g2d.drawImage(GamePanel.playerImage, x, y, width, height);
+		g2d.drawImage(GamePanel.playerImage, -width/2, -height/2, width, height, null);
 		g2d.setTransform(new AffineTransform());
 		
 	}

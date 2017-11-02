@@ -6,8 +6,8 @@ public class Projectiles extends GameObject{
 	int angle = 0;
 	void update(){
 		super.update();
-		y-=speed*Math.sin(Math.toRadians(angle));
-		x-=speed*Math.cos(Math.toRadians(angle));
+		y+=speed*Math.sin(Math.toRadians(angle));
+		x+=speed*Math.cos(Math.toRadians(angle));
 		if(y==0){
 			isAlive=false;
 		}

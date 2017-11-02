@@ -136,10 +136,10 @@ public void keyReleased(KeyEvent e) {
 		ship.aspeed=0;
 	}
 	else if(e.getKeyCode()==KeyEvent.VK_UP){
-		ship.ospeed=0;
+		ship.speed=0;
 	}
 	else if(e.getKeyCode()==KeyEvent.VK_DOWN){
-		ship.ospeed=0;
+		ship.speed=0;
 	}
 	
 }

@@ -22,6 +22,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	Font titleFont;
 	Rocketship ship;
 	public static BufferedImage playerImage;
+	public static BufferedImage AstriodImage;
 	ObjectManager om;
 GamePanel(){
 	t = new Timer(1000/60, this);
@@ -30,6 +31,7 @@ GamePanel(){
 	om.addObject(ship);
 	try{
 		playerImage = ImageIO.read(this.getClass().getResourceAsStream("ship.png"));
+		AstriodImage = ImageIO.read(this.getClass().getResourceAsStream("Astriod.png"));
 	}
 	catch(IOException e){
 		e.printStackTrace();

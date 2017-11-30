@@ -14,11 +14,11 @@ public GameObject(int x, int y, int w, int h) {
 	this.y=y;
 	this.width=w;
 	this.height=h;
+	collisionBox = new Rectangle(x,y,w,h);
 	}
 void update(){
-	x++;
-	y++;
 	
+	collisionBox.setBounds(x, y, width, height);
 }
 void draw(Graphics g){
 	g.fillRect(x, y, 20, 20);

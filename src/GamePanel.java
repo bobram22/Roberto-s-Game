@@ -26,9 +26,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	ObjectManager om;
 GamePanel(){
 	t = new Timer(1000/60, this);
-	ship = new Rocketship(250,200,50,50);
+	
+	
 	om = new ObjectManager();
-	om.addObject(ship);
+	
 	try{
 		playerImage = ImageIO.read(this.getClass().getResourceAsStream("ship.png"));
 		AstriodImage = ImageIO.read(this.getClass().getResourceAsStream("Astriod.png"));
@@ -39,6 +40,11 @@ GamePanel(){
 }
 void StartGame(){
 	t.start();
+	om.reset();
+	om.makeAstriods();
+	ship = new Rocketship(400,400,50,50);
+	om.addObject(ship);
+	om.setScore(0);
 }
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -58,6 +64,9 @@ void StartGame(){
 	}
 	void updategs(){
 		om.update();
+		if(ship.isAlive == false){
+			currentState=END_STATE;}
+			
 	}
 	
 	void updatees(){
@@ -106,6 +115,9 @@ public void keyPressed(KeyEvent e) {
 	System.out.println("bob");
 	if(e.getKeyCode()==KeyEvent.VK_ENTER){
 		currentState++;
+		if(currentState == 1){
+			StartGame();
+		}
 	}
 	if(currentState > END_STATE){
 		currentState = MENU_STATE;

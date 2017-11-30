@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class ObjectManager {
 	ArrayList<GameObject> objects;
-	
+	Random num = new Random();
 	private int score = 0;
 	
 	long enemyTimer = 0;
@@ -24,7 +24,7 @@ public class ObjectManager {
 			GameObject o = objects.get(i);
 			o.update();
 		}
-		
+		checkCollision();
 		purgeObjects();	
 	}
 
@@ -44,13 +44,13 @@ public class ObjectManager {
 	}
 
 	public void manageEnemies(){
-		if(System.currentTimeMillis() - enemyTimer >= enemySpawnTime){
-			//addObject(new Aliens(new Random().nextInt(TotallyNotAstroid.width), 0, 50, 50));
-			enemyTimer = System.currentTimeMillis();
-		}
+		
 	}
-
-
+	public void makeAstriods(){
+	for(int i = 0; i < 1;i++){	
+		addObject(new Astriods(num.nextInt(500),num.nextInt(500),50,50,num.nextInt(10)-5,num.nextInt(30)-15));
+	}
+	}
 	public void checkCollision() {
 		for (int i = 0; i < objects.size(); i++) {
 			for (int j = i + 1; j < objects.size(); j++) {
@@ -58,19 +58,19 @@ public class ObjectManager {
 				GameObject o2 = objects.get(j);
 				
 				if(o1.collisionBox.intersects(o2.collisionBox)){
-					/*if((o1 instanceof Aliens && o2 instanceof Projectiles) ||
-					   (o2 instanceof Aliens && o1 instanceof Projectiles)){
+					if((o1 instanceof Astriods && o2 instanceof Projectiles) ||
+					   (o2 instanceof Astriods && o1 instanceof Projectiles)){
 						score++;
 						System.out.println(score);
 						o1.isAlive = false;
 						o2.isAlive = false;
 					}
-				else if((o1 instanceof Aliens && o2 instanceof Rocketship) ||
-							(o2 instanceof Aliens && o1 instanceof Rocketship){
+				else if((o1 instanceof Astriods && o2 instanceof Rocketship) ||
+							(o2 instanceof Astriods && o1 instanceof Rocketship)){
 					o1.isAlive = false;
 						o2.isAlive = false;
 					}
-	*/
+	
 				}
 			}
 		}

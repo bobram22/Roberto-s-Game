@@ -16,6 +16,7 @@ public class Rocketship extends GameObject {
 		int speed = 5;
 	}
 	void update(){
+		super.update();
 		xspeed+=speed*Math.cos(Math.toRadians(angle));
 		yspeed+=speed*Math.sin(Math.toRadians(angle));
 		xspeed *= .95;

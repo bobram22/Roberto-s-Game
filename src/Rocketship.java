@@ -11,7 +11,7 @@ public class Rocketship extends GameObject {
 	int ospeed;
 	int angle=0;
 	int aspeed;
-	Rocketship(int x, int y, int w, int h){
+	Rocketship(float x, float y, int w, int h){
 		super(x,y,w,h);
 		int speed = 5;
 	}

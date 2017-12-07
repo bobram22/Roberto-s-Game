@@ -64,9 +64,11 @@ void StartGame(){
 	}
 	void updategs(){
 		om.update();
-		if(ship.isAlive == false){
+		if(om.numLives== 0){
 			currentState=END_STATE;}
-			
+		else{
+			om.addObject(ship);
+		}
 	}
 	
 	void updatees(){
@@ -84,6 +86,10 @@ void StartGame(){
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 10000,100000);    
 		om.draw(g);
+		System.out.println(om.numAstriods);
+		if(om.numAstriods == 0){
+			om.makeAstriods();
+		}
 
 	}
 	void drawes(Graphics g){

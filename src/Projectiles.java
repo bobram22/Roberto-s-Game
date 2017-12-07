@@ -30,10 +30,10 @@ public class Projectiles extends GameObject{
 	}
 		void draw(Graphics g){
 			g.setColor(Color.RED);
-			g.fillRect(x, y, width, height);
+			g.fillRect((int)x, (int)y, width, height);
 
 		}
-Projectiles(int x,int y,int w,int h,int angle){
+Projectiles(float x,float y,int w,int h,int angle){
 	super(x,y,w,h);
 	this.angle=angle;
 	

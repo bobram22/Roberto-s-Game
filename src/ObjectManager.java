@@ -6,7 +6,7 @@ import java.util.Random;
 public class ObjectManager {
 	ArrayList<GameObject> objects;
 	Random num = new Random();
-	private int score = 0;
+	 int score = 0;
 
 	long enemyTimer = 0;
 	int enemySpawnTime = 200;
@@ -74,17 +74,29 @@ public class ObjectManager {
 							o2.isAlive = false;
 						}
 
-						else if ((o1 instanceof Astriods && o2 instanceof Rocketship)
-								|| (o2 instanceof Astriods && o1 instanceof Rocketship)) {
-							numLives--;
-							o1.isAlive = false;
-							numAstriods--;
-							o2.isAlive = false;
+						else if (o1 instanceof Astriods && o2 instanceof Rocketship) {
+							collideShipAstriod((Rocketship)o2, (Astriods)o1);
+						}
+						else if (o2 instanceof Astriods && o1 instanceof Rocketship) {
+							collideShipAstriod((Rocketship)o1,(Astriods)o2);
+							
+							
 						}
 					}
 				}
 			}
 		}
+	}
+	
+	public void collideShipAstriod(Rocketship ship, Astriods astriod)
+	{
+		if(ship.IVTimer<=0) {
+			numLives--;
+			ship.isAlive = false;
+			numAstriods--;
+			astriod.isAlive = false;
+		}
+		
 	}
 
 	public int getScore() {

@@ -11,6 +11,7 @@ public class Rocketship extends GameObject {
 	int ospeed;
 	int angle=0;
 	int aspeed;
+	int IVTimer=100;
 	Rocketship(float x, float y, int w, int h){
 		super(x,y,w,h);
 		int speed = 5;
@@ -24,6 +25,7 @@ public class Rocketship extends GameObject {
 		x+=xspeed;
 		y+=yspeed;
 		angle-=aspeed;
+		IVTimer--;
 		if(x<0){
 			System.out.println("turtle");
 			x=800;
@@ -43,11 +45,12 @@ public class Rocketship extends GameObject {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.translate(x, y);
 		g2d.rotate(Math.toRadians(angle));
-		
-	/*	g2d.setColor(Color.BLUE);
-		g2d.fillRect(-width/2, -height/2, width, height);
-		*/
+		if(IVTimer>0) {	
+			g2d.setColor(Color.BLUE);
+			g2d.fillRect(-width/2, -height/2, width, height);
+			}
 		g2d.drawImage(GamePanel.playerImage, -width/2, -height/2, width, height, null);
+		
 		g2d.setTransform(new AffineTransform());
 		
 	}

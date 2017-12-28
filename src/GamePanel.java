@@ -1,3 +1,4 @@
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JApplet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -23,8 +25,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Rocketship ship;
 	public static BufferedImage playerImage;
 	public static BufferedImage AstriodImage;
+	public static BufferedImage BackGroundImage;
 	ObjectManager om;
-
+	AudioClip music;
 	GamePanel() {
 		t = new Timer(1000 / 60, this);
 
@@ -33,6 +36,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		try {
 			playerImage = ImageIO.read(this.getClass().getResourceAsStream("ship.png"));
 			AstriodImage = ImageIO.read(this.getClass().getResourceAsStream("Astriod.png"));
+			BackGroundImage = ImageIO.read(this.getClass().getResourceAsStream("maxresdefault.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -45,8 +49,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		ship = new Rocketship(400, 400, 50, 50);
 		om.addObject(ship);
 		om.setScore(0);
+		om.numLives = 3;
+		music = playSound("MFG.wav");
 	}
 
+	AudioClip playSound(String fileName) {        
+            AudioClip noise = JApplet.newAudioClip(getClass().getResource(fileName));
+            noise.play();
+			return noise;     
+    }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -69,6 +80,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		om.update();
 		if (om.numLives == 0) {
 			currentState = END_STATE;
+			music.stop();
 		}
 		System.out.println(om.numAstriods);
 		if (om.numAstriods == 0) {
@@ -94,12 +106,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawgs(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, 10000, 100000);
-		om.draw(g);
+		g.drawImage(BackGroundImage, 0, 0, 1920, 1080, null);
+				om.draw(g);
 		g.setColor(Color.magenta);
 		String lives = Integer.toString(om.numLives);
-		g.drawString(lives, 190, 135);
+		String score = Integer.toString(om.score);
+		g.drawString("Score: "+score, 190, 125);
+		g.drawString("Number of Lives: "+lives, 190, 135);
 	}
 
 	void drawes(Graphics g) {

@@ -30,7 +30,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	AudioClip music;
 	GamePanel() {
 		t = new Timer(1000 / 60, this);
-
+		titleFont = new Font("Times New Roman", Font.PLAIN,30);
 		om = new ObjectManager();
 
 		try {
@@ -103,6 +103,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(titleFont);
 		g.drawString("Totally NOT", 190, 100);
 		g.drawString("Astriods", 190, 135);
+		g.drawString("You are a space cadet and have been caught in ", 190, 200);
+		g.drawString("astriod field and your force field is running out so ", 190, 227);
+		g.drawString("you must dodge and shoot astriods", 190, 250);
+		g.drawString("\"You have three lives, move with the arrow keys, blue box means", 10, 270);
+		g.drawString("you're invicible, shoot with space\"", 10, 290);
 	}
 
 	void drawgs(Graphics g) {
@@ -110,18 +115,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				om.draw(g);
 		g.setColor(Color.magenta);
 		String lives = Integer.toString(om.numLives);
-		String score = Integer.toString(om.score);
-		g.drawString("Score: "+score, 190, 125);
+		
+		
 		g.drawString("Number of Lives: "+lives, 190, 135);
 	}
 
 	void drawes(Graphics g) {
 		g.setColor(Color.RED);
+		String score = Integer.toString(om.score);
 		g.fillRect(0, 0, 1000, 1000);
 		g.setColor(Color.BLACK);
 		g.setFont(titleFont);
+		g.drawString("Score: "+score, 190, 155);
 		g.drawString("Game", 190, 100);
 		g.drawString("Over :'(", 190, 135);
+		
 	}
 
 	public void paintComponent(Graphics g) {
